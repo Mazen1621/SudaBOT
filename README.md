@@ -1,13 +1,12 @@
 # Scholarship Bot
 
-A Python application that continuously fetches scholarship opportunities from various websites and sends real-time alerts via Telegram for fully funded Master's or PhD programs in Renewable Energy for Sudanese students with a Bachelor's in Mechanical Engineering.
+A Python application that continuously fetches scholarship opportunities from various websites and sends real-time alerts via Telegram for fully funded Master's or PhD programs.
 
 ## Features
 
 - Scrapes multiple scholarship websites for new opportunities
 - Filters results based on specific criteria:
   - Open to Sudanese/African/international students
-  - Field: Renewable Energy, Sustainable Energy, etc.
   - Level: Master's, MPhil, PhD (including direct PhD after BSc)
   - Funding: Fully funded (tuition + stipend + other expenses)
 - Eliminates duplicate notifications using persistent storage
@@ -22,19 +21,8 @@ A Python application that continuously fetches scholarship opportunities from va
 ✅ **Core Logic Verified**: Filtering, deduplication, and notification systems work correctly
 ⚠️ **Website Access Issue**: Target scholarship sites are currently blocking/requesting different access methods
 
-## Current Status - Website Connectivity
-
-During testing, we found that:
-1. **scholarships4dev.com** redirects to a tracking/middleman page (cf.trekpeak.site)
-2. **globalstudyroad.com** appears to have connectivity or access restrictions
-3. These are common anti-bot measures employed by websites
-
-This doesn't mean the bot isn't working - it means we need to adjust how we access these sites.
 
 ## 🚀 Next Steps to Make the Bot Operational
-
-### Option 1: Try Different Access Methods (Recommended First)
-The scrapers may need updated headers, cookies, or session handling. You can:
 
 1. **Update scrapers with more realistic browser headers**
 2. **Add session cookie handling**
@@ -60,9 +48,8 @@ Some sites offer:
 - Newsletter subscriptions you could monitor
 - Affiliate programs or data partnerships
 
-## 📱 What You've Built (Ready to Use When Sites Are Accessible)
 
-Your scholarship bot includes:
+The scholarship bot includes:
 
 ### Core Components:
 - `scholarship_bot.py` - Main orchestrator
@@ -155,8 +142,5 @@ If website scraping proves consistently difficult, consider:
 4. Partnering with educational offices that share opportunity lists
 5. Using change detection services on scholarship pages
 
----
 
-**Your Telegram bot is ready and tested!** The core notification system works perfectly. The remaining challenge is accessing the scholarship websites, which is a common hurdle in web scraping that can be overcome with persistent adjustments to the scraping approach.
 
-You have a solid foundation to build upon - the filtering, deduplication, and notification systems are all working correctly. Once you find a way to access the scholarship data (whether through updated scrapers, alternative sources, or manual seeding), the bot will immediately start sending you relevant opportunities.
