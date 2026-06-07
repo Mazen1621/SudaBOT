@@ -1,12 +1,12 @@
 # Scholarship Bot
 
-<<<<<<< HEAD
+
 A Python application that continuously fetches scholarship opportunities from various websites and sends real-time alerts via Telegram for fully funded Master's or PhD programs.
 =======
 ## Version 1.0.1
 
 A Python application that continuously fetches scholarship opportunities from various websites and sends real-time alerts via Telegram for fully funded Master's or PhD programs in Renewable Energy for Sudanese students with a Bachelor's in Mechanical Engineering.
->>>>>>> addebeb (Update to V1.0.1: Added Deadline Proximity Scoring system)
+
 
 ---
 
@@ -33,7 +33,6 @@ The Scholarship Bot is an automated system designed to help Sudanese students wi
 
 ## Features
 
-<<<<<<< HEAD
 - Scrapes multiple scholarship websites for new opportunities
 - Filters results based on specific criteria:
   - Open to Sudanese/African/international students
@@ -56,7 +55,7 @@ The Scholarship Bot is an automated system designed to help Sudanese students wi
 - 📱 **Telegram Integration**: Sends beautifully formatted notifications via Telegram bot
 - ⏰ **Scheduled Execution**: Runs automatically every 6 hours (configurable)
 - 💰 **Cost Effective**: Designed to run on free-tier hosting services
->>>>>>> addebeb (Update to V1.0.1: Added Deadline Proximity Scoring system)
+
 
 ### Scoring System (v1.0.1)
 The enhanced filtering system uses a 0-100 point scale:
@@ -74,7 +73,7 @@ The enhanced filtering system uses a 0-100 point scale:
 - ⚪ **365+ days**: 5 points (Distant)
 - ⚫ **Past deadline**: 0 points
 
-<<<<<<< HEAD
+
 =======
 ---
 
@@ -87,7 +86,7 @@ The enhanced filtering system uses a 0-100 point scale:
 - **Maintained Backward Compatibility** - All existing functionality preserved
 - **Fixed Boundary Conditions** - Robust deadline calculation using date-only comparison
 - **Enhanced Test Suite** - Added comprehensive validation tests for deadline scoring
->>>>>>> addebeb (Update to V1.0.1: Added Deadline Proximity Scoring system)
+
 
 ### Version 1.0.0 (Initial Release)
 - **Core Scholarship Bot System** - Basic scraping, filtering, and notification functionality
@@ -98,7 +97,7 @@ The enhanced filtering system uses a 0-100 point scale:
 - **Scheduled Execution** - GitHub Actions workflow (every 6 hours)
 - **Documentation** - Initial README and setup guides
 
-<<<<<<< HEAD
+
 1. **Update scrapers with more realistic browser headers**
 2. **Add session cookie handling**
 3. **Implement retry mechanisms with delays**
@@ -203,7 +202,7 @@ self.session.headers.update({
 │  Notification   │    │  Logging &      │    │  Output/Results      │
 │  (Telegram Bot) │    │  Error Handling │    │  (Telegram Alerts)   │
 └─────────────────┘    └──────────────────┘    └────────────────────┘
->>>>>>> addebeb (Update to V1.0.1: Added Deadline Proximity Scoring system)
+
 ```
 
 ---
@@ -534,7 +533,7 @@ Focus areas include photovoltaic systems, wind turbine design, and energy storag
     🎯 Deadline: 25/25 (Soon - 45 days)
 ```
 
-<<<<<<< HEAD
+
 ## 🛠️ Maintenance Tips
 
 - The bot automatically avoids sending duplicate notifications
@@ -587,4 +586,4 @@ The bot continuously works to find and notify you about:
 ---
 *Last updated: 2026-06-06*
 *Version: 1.0.1*
->>>>>>> addebeb (Update to V1.0.1: Added Deadline Proximity Scoring system)
+

@@ -46,8 +46,3 @@ All tests pass:
 - All existing filtering criteria unchanged
 
 ---
-
-**Your Scholarship Bot is now enhanced with intelligent deadline awareness!**
-Ready to help you never miss an urgent scholarship opportunity due to timing oversight.
-
-Sleep well knowing your bot just got smarter while you rested. 😴🤖💤

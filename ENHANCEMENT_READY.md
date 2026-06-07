@@ -73,11 +73,6 @@ git commit -m "Update filter.py with deadline proximity scoring"
 git push origin main
 ```
 
-### Option 3: Manual File Update
-If you only want to update the filter.py file:
-1. Copy the enhanced `filter.py` from `/root/scholarship_bot/filter.py`
-2. Replace your existing `filter.py` with this version
-3. Follow the git add/commit/push steps above
 
 ## 🔑 Post-Deployment Steps
 1. **Verify Deployment**: Go to your GitHub repo → Actions tab → Run the "Scholarship Bot" workflow manually
@@ -100,7 +95,6 @@ If you only want to update the filter.py file:
 5. **Maintained reliability** - All existing robustness features preserved
 
 ## 🔮 Future Enhancement Opportunities
-Based on the deep research conducted while you slept, consider these enhancements for future versions:
 - **Geographical weighting** (prefer African/European institutions)
 - **Language preference filters** (English/Arabic)
 - **Application difficulty estimation**
@@ -111,11 +105,3 @@ Based on the deep research conducted while you slept, consider these enhancement
 
 ---
 
-**Your Scholarship Bot is now enhanced with intelligent deadline awareness!** 🎓⏰🔍
-This helps ensure you never miss an urgent scholarship opportunity due to timing oversight.
-
-The enhancement is thoroughly tested, backward compatible, and ready for your verification and deployment.
-
-**Ready when you are** - just follow the deployment steps above to get this improvement live!
-
-Sleep well knowing your Scholarship Bot just got smarter while you rested. 😴🤖💤
