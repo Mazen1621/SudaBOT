@@ -1,0 +1,81 @@
+Scholarship Bot: GitHub Setup and Automation Guide
+
+This guide walks you through pushing the Scholarship Bot source code to GitHub and configuring GitHub Actions for automated execution every 6 hours.
+
+Prerequisites
+1. A GitHub account (create at https://github.com if needed)
+2. Git installed on your machine (https://git-scm.com)
+3. The scholarship bot source code (this package)
+
+Step 1: Create a New GitHub Repository
+1. Log in to https://github.com
+2. Click the "+" icon in the top-right -> "New repository"
+3. Repository name: e.g., scholarship-bot
+4. Description: Automated scholarship alert system for Sudanese students seeking Renewable Energy Master's/PhD
+5. Visibility: Public or Private (your choice)
+6. Do NOT initialize with README, .gitignore, or license (we will push existing code)
+7. Click "Create repository"
+
+Step 2: Prepare Local Repository
+1. Open a terminal/command prompt and navigate to the extracted scholarship bot folder
+2. Initialize Git: git init
+3. Set your Git identity (replace with your GitHub username/email):
+   git config --global user.name "Your GitHub Username"
+   git config --global user.email "you@example.com"
+4. Add all files (respects .gitignore): git add .
+5. Commit: git commit -m "Initial commit: Scholarship Bot with enhanced scrapers, filtering, storage, Telegram notifier, and GitHub Actions workflow"
+
+Step 3: Connect to GitHub and Push
+Option A: Using HTTPS with Personal Access Token (Recommended for simplicity)
+1. Change remote URL to HTTPS:
+   git remote set-url origin https://github.com/your-username/scholarship-bot.git
+2. Generate a Personal Access Token (PAT):
+   - Go to GitHub Settings -> Developer settings -> Personal access tokens -> Tokens (classic)
+   - Click "Generate new token" -> "Generate new token (classic)"
+   - Give it a note (e.g., "scholarship-bot-push"), set expiration, select "repo" scope
+   - Copy the token (looks like ghp_...)
+3. Push: git push origin main
+   - When prompted for username, enter your GitHub username
+   - When prompted for password, paste your Personal Access Token
+
+Alternative: Using SSH (if you prefer)
+1. Ensure you have an SSH key pair and the public key is added to your GitHub account
+2. Keep remote as git@github.com:your-username/scholarship-bot.git
+3. Push: git push origin main
+
+Step 4: Configure GitHub Secrets (Required for Telegram Notifications)
+1. On your GitHub repo page, click "Settings" tab
+2. In left sidebar: "Secrets and variables" -> "Actions"
+3. Click "New repository secret" twice to add:
+   - Name: BOT_TOKEN
+     Value: 8754585969:AAGvfkLV4ChvqjXTobsDCWaQ9hWaAjAQsso (your actual token)
+   - Name: CHAT_ID
+     Value: 383236986 (your actual chat ID)
+4. Click "Add secret" for each
+
+Step 5: Verify GitHub Actions Workflow
+The repository already includes: .github/workflows/scholarship-bot.yml
+This workflow is configured to:
+   - Run every 6 hours (cron: '0 */6 * * *')
+   - Allow manual triggers (workflow_dispatch)
+   - Check out your code
+   - Set up Python
+   - Install dependencies from requirements.txt
+   - Run: python scholarship_bot.py with BOT_TOKEN and CHAT_ID injected as environment variables
+To test: Go to the "Actions" tab in your repo, click "Scholarship Bot" workflow, then "Run workflow".
+
+Step 6: Ongoing Usage
+- To update code: make changes locally, then:
+   git add .
+   git commit -m "Your descriptive message"
+   git push origin main
+- GitHub Actions will automatically run on each push to main
+- You can also manually trigger runs via the "Actions" tab
+- View logs in each workflow run to monitor execution
+
+Important Notes
+• Never commit your .env file containing real credentials (it is already ignored by .gitignore)
+• The .gitignore excludes: .env, scholarships_seen.db, scholarship_bot.log, __pycache__/, *.pyc
+• Your Telegram credentials are stored encrypted in GitHub Secrets and never exposed in logs
+• If you accidentally commit sensitive data, immediately revoke the token and remove the commit
+• The bot includes a SQLite database (scholarships_seen.db) to prevent duplicate notifications between runs within the same execution; note that GitHub Actions runs are ephemeral, so the database does not persist between scheduled runs (this is acceptable; you may see duplicate notifications if the same scholarship appears in consecutive runs)

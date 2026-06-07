@@ -5,6 +5,7 @@ Enhanced with better keyword matching and weighting system.
 import re
 from typing import List
 from models import Scholarship
+from datetime import datetime, timezone
 
 class ScholarshipFilter:
     """Filters scholarships based on user's specific criteria with scoring system."""
@@ -87,6 +88,8 @@ class ScholarshipFilter:
             'field_match': False,
             'level_match': False,
             'funding_match': False,
+            'deadline_match': False,
+            'deadline_score': 0,
             'boost_matches': [],
             'exclude_matches': [],
             'negative_score': 0
@@ -140,8 +143,50 @@ class ScholarshipFilter:
                 details['boost_matches'].append(keyword)
                 break  # Just need one match
 
-        # Calculate category score (sum of matched categories, each worth 25)
-        category_score = nationality_score + field_score + level_score + funding_score
+        # Check deadline: award points based on how soon the deadline is
+        deadline_score = 0
+        if scholarship.deadline:
+            from datetime import datetime, timezone
+            now = datetime.now(timezone.utc)
+            # Make scholarship.deadline timezone-aware if it isn't already
+            if scholarship.deadline.tzinfo is None:
+                deadline_aware = scholarship.deadline.replace(tzinfo=timezone.utc)
+            else:
+                deadline_aware = scholarship.deadline
+
+            # Check if deadline is in the past (by comparing dates only)
+            # This avoids issues with microsecond differences near boundary times
+            deadline_date = deadline_aware.date()
+            now_date = now.date()
+            if deadline_date < now_date:
+                deadline_score = 0  # Past deadline
+            else:
+                # Deadline is today or in the future - calculate whole days difference
+                days_until_deadline = (deadline_date - now_date).days
+
+                # Score based on deadline proximity:
+                # 0-30 days: 25 points (urgent)
+                # 31-90 days: 20 points (soon)
+                # 91-180 days: 15 points (upcoming)
+                # 181-365 days: 10 points (later)
+                # 365+ days: 5 points (distant)
+                if days_until_deadline <= 30:
+                    deadline_score = 25
+                elif days_until_deadline <= 90:
+                    deadline_score = 20
+                elif days_until_deadline <= 180:
+                    deadline_score = 15
+                elif days_until_deadline <= 365:
+                    deadline_score = 10
+                else:
+                    deadline_score = 5
+
+                details['deadline_match'] = True
+                details['deadline_score'] = deadline_score
+                details['boost_matches'].append(f"deadline:{days_until_deadline}days")
+
+        # Calculate category score (sum of matched categories, each worth up to 25)
+        category_score = nationality_score + field_score + level_score + funding_score + deadline_score
 
         # Add boost points for additional matches beyond the basics
         boost_score = 0

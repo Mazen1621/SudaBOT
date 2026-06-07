@@ -1,0 +1,18 @@
+# Environment variables
+.env
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Database
+scholarships_seen.db
+
+# Logs
+scholarship_bot.log
+
+# Test files
+test_*.py
+simple_test.py
+test_temp.py
